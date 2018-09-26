@@ -21,7 +21,26 @@ const Todo = mongoose.model('Todo', {
     }
 });
 
-const newTodo = new Todo({
+const User = mongoose.model('User', {
+    email: {
+        type: String,
+        required: true,
+        minlength: 1,
+        trim: true
+    }
+})
+
+const newUser = new User({
+    email: "test@email.com"
+});
+
+newUser.save().then(doc => {
+    console.log(`Saved user: ${JSON.stringify(doc)}`);
+}).catch(e => {
+    console.log(`Failed to save user: ${e}`);
+});
+
+/*const newTodo = new Todo({
     text: 'Cook dinner'
 });
 
@@ -29,4 +48,4 @@ newTodo.save().then(doc => {
     console.log('Saved todo', doc);
 }, e => {
     console.log('Unable to save todo', e);
-});
+});*/
