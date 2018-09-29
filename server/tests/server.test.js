@@ -87,4 +87,11 @@ describe('GET /todos/id', () =>{
         .expect(404)
         .end(done);
     });
+
+    it('Should return a 404 for invalid id', (done) =>{
+        request(app)
+        .get(`/todos/123`)
+        .expect(404)
+        .end(done);
+    });
 });
