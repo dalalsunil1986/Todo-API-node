@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParse = require('body-parser');
 const { ObjectId } = require('mongodb');
+const _ = require('lodash');
 
 const { mongoose } = require('./db/mongoose');
 const { Todo } = require('./models/todo');
@@ -36,10 +37,10 @@ app.get('/todos/:id', (req, res) => {
         res.status(404).send();
     }
     Todo.findById(id).then(todo => {
-        if(!todo){
+        if (!todo) {
             res.status(404).send();
         }
-        res.send({todo});
+        res.send({ todo });
     }).catch(e => {
         res.status(400).send();
     });
@@ -51,10 +52,10 @@ app.delete('/todos/:id', (req, res) => {
         res.status(404).send();
     }
     Todo.findOneAndDelete(id).then(todo => {
-        if(!todo){
+        if (!todo) {
             res.status(404).send();
         }
-        res.send({todo});
+        res.send({ todo });
     }).catch(e => {
         res.status(400).send();
     });
