@@ -9,14 +9,14 @@ const User = mongoose.model('User', {
         trim: true,
         unique: true,
         validate: {
-            validator: isEmail,
+            validator: validator.isEmail,
             message: '{VALUE} is noy a valid email'
         }
     },
     password: {
         type: String,
         require: true,
-        minLength: 8
+        minlength: 8
     },
     token: [{
         access: {
